@@ -260,7 +260,7 @@ export const Body2b = (props) => {
         </div>
       </div>
     <div className='w-[280px] flex-col gap-1'>
-        <div className='w-[280px] flex gap-1  justify-between text-gray-400'><div className='flex items-center gap-1'><MdOutlineSignalCellularAlt1Bar/><div >Low</div> {tl}</div><div className='flex items-center gap-1'><IoMdAdd /><BsThreeDots /></div></div>
+        <div className='w-[280px] flex gap-1  justify-between text-gray-400'><div className='flex items-center gap-1'><MdOutlineSignalCellularAlt1Bar/><div style={{color:`${props.curcolor}`}}>Low</div> {tl}</div><div className='flex items-center gap-1'><IoMdAdd /><BsThreeDots /></div></div>
         <div>
           {low.map((item) => (
             <Card key={item.id} id={item.id} title={item.title} priority={5} status={item.status} usrid={item.usrid} curbgcolor={props.curbgcolor} curcolor={props.curcolor}/>
