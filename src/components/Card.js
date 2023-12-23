@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import { GoDotFill } from "react-icons/go";
 import { MdOutlineSignalCellularAlt1Bar,MdOutlineSignalCellularAlt2Bar,MdOutlineSignalCellularAlt   } from "react-icons/md";
 import { BsExclamationLg } from "react-icons/bs";
@@ -56,9 +56,20 @@ const Card = (props) => {
   else{
     IconComponent3=IoPersonOutline;
   }
+  // Changing the shadow on dark and light mode
+  const [bgc,changebgc]=useState("rgba(17, 17, 26, 0.2) 0px 0px 16px");
+  useEffect(()=>{
+    console.log(props.curcolor);
+  if (props.curcolor === "white") {
+    changebgc("rgba(255, 253, 253, 0.2) 0px 0px 16px");
+  } else {
+    changebgc("rgba(17, 17, 26, 0.2) 0px 0px 16px");
+
+  }
+}, [props.curcolor]);
   var IconComponent = icn[props.priority];
   return (
-    <div style={{color:`${props.curcolor}`, backgroundColor:`${props.curbgcolor}`}} className='w-[280px] flex-col h-auto space-y-3 p-3 border border-gray-200 rounded-xl mt-5 shadow-md ' >
+    <div style={{color:`${props.curcolor}`, backgroundColor:`${props.curbgcolor}`,boxShadow:`${bgc}`}} className={`w-[280px] flex-col h-auto space-y-3 p-3 border border-gray-200 rounded-xl mt-5 `} >
         <div className='text-gray-400 flex justify-between'><div>{props.id}</div><div className={`${hide2}`}><IconComponent3/></div></div>
         <div className='flex gap-1'>
         <div className={`${hide1} mt-1`}><IconComponent2/></div>

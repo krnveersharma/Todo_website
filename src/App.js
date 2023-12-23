@@ -10,23 +10,23 @@ import { MdSunny } from "react-icons/md";
 const App = () => {
   const [curcolor,changecolor]=useState("black");
   const[curbodycolor,changebodycolor]=useState("#F5F4F8")
-  const [curbgcolor,changebgcolor]=useState('#FFFFFF');
-  const[Navcurcolor,changeNavcurcolor]=useState("#FFFFFF");
+  const [curbgcolor,changebgcolor]=useState('#F5F5F9');
+  const[Navcurcolor,changeNavcurcolor]=useState("#FEFFFE");
   const[DmIcon,changedmicon]=useState(<IoIosMoon/>);
   // Dark mode changes the background olor and text color adnd changes moon icon to sun icon
   const darkmode=()=>{
-    if(curbgcolor==="#FFFFFF"){
+    if(curbgcolor==="#F5F5F9"){
       changedmicon(<div className='text-white'><MdSunny/></div>)
       changecolor("white");
-      changebgcolor('#000000');
+      changebgcolor('#010508');
       changeNavcurcolor('#161B22');
       console.log(curcolor);
     }
     else{
       changedmicon(<IoIosMoon/>)
       changecolor("black");
-      changebgcolor('#FFFFFF');
-      changeNavcurcolor('white')
+      changebgcolor('#F5F5F9');
+      changeNavcurcolor('#FEFFFE')
       console.log(curcolor);
   }
   }

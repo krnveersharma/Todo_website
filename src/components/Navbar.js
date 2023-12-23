@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {BiChevronDown} from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import { IoIosMoon } from "react-icons/io";
@@ -9,6 +9,17 @@ const Navbar = (props) => {
   const [currstate,newstate]=useState("hidden"); //currstate is used for first subtab that is appearing on clicking the display button. I am using it so that it can be hidden or displayed depends on clicking event
   const [currstate1,newstate1]=useState("hidden");//currstate 1 is used for subtab that is appearing on clicking the button next to Grouping. I am using it so that it can be hidden or displayed depends on clicking event
   const [currstate2,newstate2]=useState("hidden");//currstate 2 is used for subtab that is appearing on clicking the button next to ordering. I am using it so that it can be hidden or displayed depends on clicking event
+  // Changing the shadow on dark and light mode
+  const [bgc,changebgc]=useState("rgba(17, 17, 26, 0.3) 0px 0px 16px");
+  useEffect(()=>{
+    console.log(props.curcolor);
+  if (props.curcolor === "white") {
+    changebgc("rgba(255, 253, 253, 0.3) 0px 0px 16px");
+  } else {
+    changebgc("rgba(17, 17, 26, 0.3) 0px 0px 16px");
+
+  }
+}, [props.curcolor]);
   // discontnt is being called Display button.It orders to display the frame containing Grouping and ordering.
   const discontnt=()=>{
     if(currstate=="hidden"){
@@ -56,12 +67,12 @@ const Navbar = (props) => {
   return (
     // It contains all the buttons and words in our Navbar
     <div style={{ backgroundColor: `${props.curbgcolor}` }} className={`navbar h-10  flex justify-between` }>
-      <div className={`ml-6  w-[115px] m-auto items-center bg-${props.curbgcolor} flex gap-2 p-1 rounded cursor-pointer justify-between relative border border-gray-300 shadow-md text-gray-400`} onClick={discontnt}>
+      <div style={{boxShadow:`${bgc}`}} className={`ml-6  w-[115px] m-auto items-center bg-${props.curbgcolor} flex gap-2 p-1 rounded cursor-pointer justify-between relative border border-gray-300`} onClick={discontnt}>
       <VscSettings />
             <div style={{color:`${props.curcolor}`}}>Display</div>
             <BiChevronDown/>
       </div>
-      <div id='dropdown' style={{ backgroundColor: `${props.curbgcolor}` }} className={`rounded absolute mt-10 ml-6 flex-row  gap-6 border border-gray-300 bg-${props.curbgcolor} ${currstate} text-${props.curcolor}`}>
+      <div id='dropdown' style={{ backgroundColor: `${props.curbgcolor}`,boxShadow:`${bgc}` }} className={`rounded absolute mt-10 ml-6 flex-row  gap-6 border border-gray-300 bg-${props.curbgcolor} ${currstate} text-${props.curcolor}`}>
             <div className='flex gap-20'>
               <div className={`ml-4  mt-1 p-1 text-${props.curcolor}`}>Grouping</div>
               <div className='mr-4 w-[115px] mt-1 ml-auto mb-1 h-[32px] items-center bg-${props.curbgcolor} flex gap-2 p-1  cursor-pointer justify-between border border-gray-300 rounded-md' onClick={discontnt1}>{groupState1}<BiChevronDown/></div>
